@@ -1,0 +1,74 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title BEWD Jotly
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    - unless current_page?(root_url)
+      nav.navbar.navbar-default.navbar-fixed-top
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle.collapsed data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand href="/jots"  Jotly
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li.active
+                a href="#"
+                  | Link
+                  span.sr-only (current)
+              li
+                a href="#"  Link
+              li.dropdown
+                a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
+                  | Dropdown
+                  span.caret
+                ul.dropdown-menu role="menu"
+                  li
+                    a href="#"  Action
+                  li
+                    a href="#"  Another action
+                  li
+                    a href="#"  Something else here
+                  li.divider
+                  li
+                    a href="#"  Separated link
+                  li.divider
+                  li
+                    a href="#"  One more separated link
+            / form.navbar-form.navbar-left role="search"
+            /   .form-group
+            /     input.form-control placeholder="Search" type="text" /
+            /   button.btn.btn-default type="submit"  Submit
+            ul.nav.navbar-nav.navbar-right
+              li
+                a href="#"
+                  | You are #{session[:email]}
+              li
+                a.icon href=root_path data-toggle="tooltip" data-placement="bottom" title="Log out"
+                  span.glyphicon.glyphicon-off aria-hidden="true"
+
+            /   li.dropdown
+            /     a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
+            /       | Dropdown
+            /       span.caret
+            /     ul.dropdown-menu role="menu"
+            /       li
+            /         a href="#"  Action
+            /       li
+            /         a href="#"  Another action
+            /       li
+            /         a href="#"  Something else here
+            /       li.divider
+            /       li
+            /         a href="#"  Separated link
+    .pad
+      = yield

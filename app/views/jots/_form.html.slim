@@ -1,0 +1,5 @@
+= form_for @jot, html: { :multipart => true } do |f|
+  = f.file_field :photo
+  = f.text_field :content
+  br
+  = f.submit

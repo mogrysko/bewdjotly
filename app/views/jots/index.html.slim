@@ -1,0 +1,27 @@
+.container-fluid
+  .row
+  - @jots.each do |jot|
+    .col-xs-6.col-sm-3
+      .well
+        img.img-thumbnail src = jot.photo.url(:medium)
+        br
+        - if jot_author?(jot)
+          a.icon href=edit_jot_path(jot) data-toggle="tooltip" data-placement="bottom" title="Edit your jot"
+            span.glyphicon.glyphicon-edit aria-hidden="true"
+          a.icon href=jot_path(jot) data-method="delete" data-toggle="tooltip" data-placement="bottom" title="Edit your jot"
+            span.glyphicon.glyphicon-trash aria-hidden="true"
+        span.text-muted.author
+          | Posted by:
+          =<> jot_author(jot)
+          | on
+          =<> jot.updated_at.strftime('%A, %B %e, %Y')
+          / | at
+          / =< jot.updated_at.strftime('%l:%M %p')
+        br
+        span.content
+          = jot.content
+        / = link_to 'Delete', jot_path(jot), method: :delete
+  
+= link_to "New", new_jot_path
+br
+br

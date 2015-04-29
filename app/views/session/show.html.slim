@@ -1,0 +1,18 @@
+-if flash[:alert]
+  h4 Error
+  ul
+    li = flash[:alert]
+h2 Sign in
+= form_tag
+input type="text" id="email" name="email" placeholder="Email"
+br
+br
+button type="submit" Sign in
+br
+br
+= link_to 'Need a login?', new_user_path
+hr
+h2 User list
+- @users.each do |user|
+  = user.email
+  br
