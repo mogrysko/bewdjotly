@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'session#show'
   post '/' => 'session#create'
-  resources :users, only: [:new, :create]
+  delete '/session' => 'session#destroy'
+  resources :users, only: [:new, :create, :show]
   resources :jots
 end

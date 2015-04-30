@@ -1,3 +1,8 @@
+- content_for :newjot do
+  li
+    a.menuicon href=new_jot_path data-toggle="tooltip" data-placement="bottom" title="New Jot"
+      span.glyphicon.glyphicon-pencil aria-hidden="true"
+
 .container-fluid
   .row
   - @jots.each do |jot|
@@ -8,7 +13,7 @@
         - if jot_author?(jot)
           a.icon href=edit_jot_path(jot) data-toggle="tooltip" data-placement="bottom" title="Edit your jot"
             span.glyphicon.glyphicon-edit aria-hidden="true"
-          a.icon href=jot_path(jot) data-method="delete" data-toggle="tooltip" data-placement="bottom" title="Edit your jot"
+          a.icon href=jot_path(jot) data-method="delete" data-toggle="tooltip" data-placement="bottom" title="Delete your jot"
             span.glyphicon.glyphicon-trash aria-hidden="true"
         span.text-muted.author
           | Posted by:
@@ -21,7 +26,7 @@
         span.content
           = jot.content
         / = link_to 'Delete', jot_path(jot), method: :delete
-  
+
 = link_to "New", new_jot_path
 br
 br

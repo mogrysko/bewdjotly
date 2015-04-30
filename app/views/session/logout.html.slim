@@ -1,6 +1,6 @@
 - content_for :session do
   span
-      
+
 -if flash[:alert]
   .alert.alert-danger.alert-dismissable role="alert"
     button.close type="button" data-dismiss="alert" aria-label="Close"
@@ -14,7 +14,7 @@
     .row
       .col-md-6.col-md-offset-3
         span.welcome
-          h1 Welcome to Jotly!
+          h1 You've logged out.
           br
           br
           = form_tag
@@ -31,4 +31,3 @@
         | or use one of the emails in the list below
       - @users.each do |user|
         = user.email
-        br

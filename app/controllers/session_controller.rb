@@ -1,8 +1,10 @@
 class SessionController < ApplicationController
+  def index; end
   def show
     @users = User.all
   end
   def create
+    @users = User.all
     user = User.find_by(email: params[:email])
     if user
       login user
@@ -12,14 +14,8 @@ class SessionController < ApplicationController
       flash[:alert]="You must enter a registered email address."
     end
   end
-  def jot_author(jot)
-    if jot.user_id == current_user.try(:id)
-      'You'
-    else
-      jot.user.try(:email)
-    end
-  end
-  def jot_author?(jot)
-    jot.user_id == current_user.try(:id)
+  def destroy
+    @_current_user = session[:user_id] = nil
+    redirect_to root_path
   end
 end

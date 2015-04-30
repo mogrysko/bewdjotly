@@ -9,7 +9,12 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    - unless current_page?(root_url)
+    / - if params[:controller] == 'session' && %w(show create).include?(params[:action])
+    - if content_for?(:session)
+      = yield :session
+    - elsif content_for?(:newuser)
+      = yield :newuser
+    - elsif params[:controller] == 'jots' && %w(index new edit create update).include?(params[:action])
       nav.navbar.navbar-default.navbar-fixed-top
         .container-fluid
           .navbar-header
@@ -22,53 +27,24 @@ html
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             ul.nav.navbar-nav
               li.active
-                a href="#"
-                  | Link
+                a href=jots_path
+                  | All jots
+                - if current_page?('/jots')
                   span.sr-only (current)
               li
-                a href="#"  Link
-              li.dropdown
-                a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
-                  | Dropdown
-                  span.caret
-                ul.dropdown-menu role="menu"
-                  li
-                    a href="#"  Action
-                  li
-                    a href="#"  Another action
-                  li
-                    a href="#"  Something else here
-                  li.divider
-                  li
-                    a href="#"  Separated link
-                  li.divider
-                  li
-                    a href="#"  One more separated link
-            / form.navbar-form.navbar-left role="search"
-            /   .form-group
-            /     input.form-control placeholder="Search" type="text" /
-            /   button.btn.btn-default type="submit"  Submit
-            ul.nav.navbar-nav.navbar-right
-              li
                 a href="#"
-                  | You are #{session[:email]}
+                  | Link 2
+                - if current_page?(root_url)
+                  span.sr-only (current)
+            ul.nav.navbar-nav.navbar-right
+              - if content_for?(:newjot)
+                = yield :newjot
               li
-                a.icon href=root_path data-toggle="tooltip" data-placement="bottom" title="Log out"
+                a.menuicon href=user_path(id: session[:user_id]) data-toggle="tooltip" data-placement="bottom" title="Profile"
+                  span.glyphicon.glyphicon-user aria-hidden="true"
+              li
+                a.menuicon href='/session' data-method="delete" data-toggle="tooltip" data-placement="bottom" title="Log out"
                   span.glyphicon.glyphicon-off aria-hidden="true"
 
-            /   li.dropdown
-            /     a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
-            /       | Dropdown
-            /       span.caret
-            /     ul.dropdown-menu role="menu"
-            /       li
-            /         a href="#"  Action
-            /       li
-            /         a href="#"  Another action
-            /       li
-            /         a href="#"  Something else here
-            /       li.divider
-            /       li
-            /         a href="#"  Separated link
     .pad
       = yield
