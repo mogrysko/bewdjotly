@@ -31,3 +31,9 @@
         br
         .content
           = jot.content
+        .like
+          - if not jot_author?(jot)
+            - if has_not_liked?(jot)
+              = button_to 'Like', like_jot_path(jot), class: 'btn btn-success btn-xs', remote: true
+            -else
+              = button_to 'Unlike', unlike_jot_path(jot), class: 'btn btn-default btn-xs', remote: true
