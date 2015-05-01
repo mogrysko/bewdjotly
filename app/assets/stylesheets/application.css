@@ -16,15 +16,22 @@
  */
 
 span.author {
-  font-size: 8pt;
+  font-size: 9pt;
   font-weight: bold;
-  font-color: #848484;
+  color: #0B173B;
 }
 
-span.content {
+span.date {
+  font-size: 8pt;
+  color: #848484;
+}
+
+
+div.content {
+  padding: 9px 0px 0px 0px;
   font-size: 10pt;
   font-family: calibri;
-  font-color: #848484;
+  text-align: justify;
 }
 
 a.icon{
@@ -49,4 +56,14 @@ span.welcome {
 
 span.login {
   text-align: right;
+}
+
+img.profile {
+  height: 100px;
+  width: 100px;
+}
+
+img.jot {
+  height: 40px;
+  width: 40px;
 }

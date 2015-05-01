@@ -14,7 +14,7 @@ html
       = yield :session
     - elsif content_for?(:newuser)
       = yield :newuser
-    - elsif params[:controller] == 'jots' && %w(index new edit create update).include?(params[:action])
+    - elsif params[:controller] == 'jots' && %w(index new edit create update).include?(params[:action]) || params[:controller] == 'users' && %w(show).include?(params[:action])
       nav.navbar.navbar-default.navbar-fixed-top
         .container-fluid
           .navbar-header
@@ -39,9 +39,8 @@ html
             ul.nav.navbar-nav.navbar-right
               - if content_for?(:newjot)
                 = yield :newjot
-              li
-                a.menuicon href=user_path(id: session[:user_id]) data-toggle="tooltip" data-placement="bottom" title="Profile"
-                  span.glyphicon.glyphicon-user aria-hidden="true"
+              - if content_for?(:profile)
+                = yield :profile
               li
                 a.menuicon href='/session' data-method="delete" data-toggle="tooltip" data-placement="bottom" title="Log out"
                   span.glyphicon.glyphicon-off aria-hidden="true"

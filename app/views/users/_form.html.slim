@@ -1,0 +1,16 @@
+-if @user.errors.present?
+  h4 Error
+  ul
+    -for error in @user.errors.full_messages
+      li = error
+= form_for @user do |f|
+  = f.label :email, 'E-mail', class: 'sr-only'
+  br
+  = f.text_field :email, class: 'form-control', placeholder: 'sample@email.com'
+  br
+  = f.file_field :photo, class: 'filestyle',
+      :'data-classButton' => 'btn btn-primary btn-xs',
+      :'data-input' => 'false', classIcon:  'icon-plus',
+      :'data-buttonText' => 'Add a profile pic'
+  br
+  = f.submit class: 'btn btn-success'

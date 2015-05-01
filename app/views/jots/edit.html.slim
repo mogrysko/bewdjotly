@@ -1,2 +1,7 @@
+- content_for :profile do
+  li
+    a.menuicon href=user_path(id: session[:user_id]) data-toggle="tooltip" data-placement="bottom" title="Profile"
+      span.glyphicon.glyphicon-user aria-hidden="true"
+
 h2 Edit Jot
 = render 'form'

@@ -1,1 +1,9 @@
-h4 = @user.email
+- content_for :newjot do
+  li
+    a.menuicon href=new_jot_path data-toggle="tooltip" data-placement="bottom" title="New Jot"
+      span.glyphicon.glyphicon-pencil aria-hidden="true"
+.container-fluid
+  h2 Profile
+  img.img-circle.thumbnail.profile src = @user.photo.url(:medium)
+  h4 = @user.email
+  = link_to "Edit", edit_user_path(@user)

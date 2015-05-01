@@ -1,5 +1,9 @@
 = form_for @jot, html: { :multipart => true } do |f|
-  = f.file_field :photo
+  = f.file_field :photo, class: 'filestyle',
+       :'data-classButton' => 'btn btn-primary btn-xs',
+       :'data-input' => 'false', classIcon:  'icon-plus',
+       :'data-buttonText' => 'Add a photo'
+  br
   = f.text_area :content, class: 'form-control', cols: '1', rows: '5'
   br
-  = f.submit class: 'btn btn-default'
+  = f.submit class: 'btn btn-success'
