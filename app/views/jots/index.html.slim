@@ -34,6 +34,29 @@
         .like
           - if not jot_author?(jot)
             - if has_not_liked?(jot)
-              = button_to 'Like', like_jot_path(jot), class: 'btn btn-success btn-xs', remote: true
+              = button_to 'Like', like_jot_path(jot), class: 'btn btn-success btn-xs'
             -else
-              = button_to 'Unlike', unlike_jot_path(jot), class: 'btn btn-default btn-xs', remote: true
+              = button_to 'Unlike', unlike_jot_path(jot), class: 'btn btn-default btn-xs'
+          br
+          - if jot.likes.size === 0 && has_not_liked?(jot)
+            |
+          - elsif jot.likes.size === 1 && has_not_liked?(jot)
+            | Liked by 1 user
+          - elsif jot.likes.size > 1 && has_not_liked?(jot)
+            | Liked by
+            =<> jot.likes.size
+            | users
+          - elsif (jot.likes.size === 1) && (not has_not_liked?(jot))
+            | Liked by you
+          - elsif (jot.likes.size === 2) && (not has_not_liked?(jot))
+            | Liked by you and 1 other user
+          - elsif (jot.likes.size > 2) && (not has_not_liked?(jot))
+            | Liked by you and
+            =<> jot.likes.size - 1
+            | other user
+/ likes = 0 -> blank
+/ likes = 1 -> liked by 1 person
+/ likes > 1 -> liked by x people
+/ likes by you and 0 others -> Liked by you
+/ likes by you and 1 other -> Liked by you and 1 other user
+/ likes by you and 2 others -> Liked by you and 2 other users
