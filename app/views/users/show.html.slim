@@ -13,9 +13,17 @@
       img.img-circle.profile.img-thumbnail src = @user.photo.url(:medium)
       h4
         => @user.email
-        - if @user.id == current_user.try(:id)
+        br
+        br
+        / - if @user.id == current_user.try(:id)
+        - if current_user?(@user)
           a.menuicon href=edit_user_path(@user) data-toggle="tooltip" data-placement="right" title="Edit profile"
             span.glyphicon.glyphicon-edit aria-hidden="true"
+        - unless current_user?(@user)
+          - if current_user.following?(@user)
+            = render 'unfollow'
+          - else
+            = render 'follow'
   hr
   .row
   - @jots.each do |jot|
