@@ -5,12 +5,17 @@
 .container-fluid
   .row
     .col-md-6.col-md-offset-3.profile
-      h2 Profile
+      h2
+        - if @user.id == current_user.try(:id)
+          | Your Profile
+        - else
+          | Profile
       img.img-circle.profile.img-thumbnail src = @user.photo.url(:medium)
       h4
         => @user.email
-        a.menuicon href=edit_user_path(@user) data-toggle="tooltip" data-placement="right" title="Edit profile"
-          span.glyphicon.glyphicon-edit aria-hidden="true"
+        - if @user.id == current_user.try(:id)
+          a.menuicon href=edit_user_path(@user) data-toggle="tooltip" data-placement="right" title="Edit profile"
+            span.glyphicon.glyphicon-edit aria-hidden="true"
   hr
   .row
   - @jots.each do |jot|

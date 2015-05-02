@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @jots = @user.jots
+    @jots = @user.jots.order(updated_at: :desc)
   end
   def new
     @user = User.new

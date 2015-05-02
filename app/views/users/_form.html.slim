@@ -13,4 +13,7 @@
       :'data-input' => 'false', classIcon:  'icon-plus',
       :'data-buttonText' => 'Add a profile pic'
   br
-  = f.submit class: 'btn btn-success'
+  - if params[:controller] == 'users' && %w(new create).include?(params[:action])
+    = f.submit 'Create Profile', class: 'btn btn-success'
+  - elsif params[:controller] == 'users' && %w(edit update).include?(params[:action])
+    = f.submit 'Edit Profile', class: 'btn btn-success'

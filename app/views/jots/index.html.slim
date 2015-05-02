@@ -17,7 +17,7 @@
           .col-md-8
             span.author
               | Posted by:
-              =<> jot_author(jot)
+              =<> link_to jot_author(jot), user_path(id: jot.user_id)
             br
             span.date
               =< jot.updated_at.strftime('%A, %B %e, %Y')
