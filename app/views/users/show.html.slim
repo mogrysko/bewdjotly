@@ -3,7 +3,36 @@
     a.menuicon href=new_jot_path data-toggle="tooltip" data-placement="bottom" title="New Jot"
       span.glyphicon.glyphicon-pencil aria-hidden="true"
 .container-fluid
-  h2 Profile
-  img.img-circle.thumbnail.profile src = @user.photo.url(:medium)
-  h4 = @user.email
-  = link_to "Edit", edit_user_path(@user)
+  .row
+    .col-md-6.col-md-offset-3.profile
+      h2 Profile
+      img.img-circle.profile.img-thumbnail src = @user.photo.url(:medium)
+      h4
+        => @user.email
+        a.menuicon href=edit_user_path(@user) data-toggle="tooltip" data-placement="right" title="Edit profile"
+          span.glyphicon.glyphicon-edit aria-hidden="true"
+  hr
+  .row
+  - @jots.each do |jot|
+    .col-xs-6.col-sm-3
+      .well
+        .row
+          .col-md-2
+            img.thumbnail.jot src = jot.user.photo.url(:medium)
+          .col-md-8
+            span.author
+              | Posted by:
+              =<> jot_author(jot)
+            br
+            span.date
+              =< jot.updated_at.strftime('%A, %B %e, %Y')
+          .col-md-2
+            - if jot_author?(jot)
+              a.icon href=edit_jot_path(jot) data-toggle="tooltip" data-placement="bottom" title="Edit your jot"
+                span.glyphicon.glyphicon-edit aria-hidden="true"
+              a.icon href=jot_path(jot) data-method="delete" data-toggle="tooltip" data-placement="bottom" title="Delete your jot"
+                span.glyphicon.glyphicon-trash aria-hidden="true"
+        img.img-thumbnail src = jot.photo.url(:medium)
+        br
+        .content
+          = jot.content
