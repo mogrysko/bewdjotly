@@ -4,6 +4,10 @@
     -for error in @user.errors.full_messages
       li = error
 = form_for @user do |f|
+  = f.label :username, 'User name', class: 'sr-only'
+  br
+  = f.text_field :username, class: 'form-control', placeholder: 'Enter a user name'
+  br
   = f.label :email, 'E-mail', class: 'sr-only'
   br
   = f.text_field :email, class: 'form-control', placeholder: 'sample@email.com'

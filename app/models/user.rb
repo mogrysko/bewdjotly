@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   validates_format_of :email, with: /\A[\w.+\-]+@[\w.+\-]+\.\w+\z/
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_presence_of :username
+  validates_uniqueness_of :username
+  validates_length_of :username, maximum: 16
   has_attached_file :photo,
   styles: {
   medium: "100x100>"  },

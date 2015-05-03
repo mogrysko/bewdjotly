@@ -12,6 +12,8 @@
           | Profile
       img.img-circle.profile.img-thumbnail src = @user.photo.url(:medium)
       h4
+        => @user.username
+        br
         => @user.email
         br
         br
