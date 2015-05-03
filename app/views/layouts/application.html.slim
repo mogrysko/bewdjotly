@@ -14,7 +14,7 @@ html
       = yield :session
     - elsif content_for?(:newuser)
       = yield :newuser
-    - elsif params[:controller] == 'jots' && %w(index new edit create update).include?(params[:action]) || params[:controller] == 'users' && %w(show).include?(params[:action])
+    - elsif params[:controller] == 'jots' && %w(index new edit create update).include?(params[:action]) || params[:controller] == 'users' && %w(show yourfeed).include?(params[:action])
       nav.navbar.navbar-default.navbar-fixed-top
         .container-fluid
           .navbar-header
@@ -26,15 +26,15 @@ html
             a.navbar-brand href="/jots"  Jotly
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             ul.nav.navbar-nav
-              li.active
+              li
                 a href=jots_path
                   | All jots
                 - if current_page?('/jots')
                   span.sr-only (current)
               li
-                a href="#"
-                  | Link 2
-                - if current_page?(root_url)
+                a href="/feed"
+                  | Your feed
+                - if current_page?('/feed')
                   span.sr-only (current)
             ul.nav.navbar-nav.navbar-right
               - if content_for?(:newjot)

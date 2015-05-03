@@ -15,7 +15,6 @@
         => @user.email
         br
         br
-        / - if @user.id == current_user.try(:id)
         - if current_user?(@user)
           a.menuicon href=edit_user_path(@user) data-toggle="tooltip" data-placement="right" title="Edit profile"
             span.glyphicon.glyphicon-edit aria-hidden="true"

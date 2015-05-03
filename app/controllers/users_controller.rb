@@ -22,6 +22,9 @@ class UsersController < ApplicationController
     user.update(user_params)
     redirect_to user_path(user)
   end
+  def yourfeed
+    @jots = current_user.feed.order(updated_at: :desc)
+  end
   private
   def user_params
     params.require(:user).permit(:photo, :email)

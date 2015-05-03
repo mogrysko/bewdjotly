@@ -7,53 +7,54 @@
     a.menuicon href=user_path(id: session[:user_id]) data-toggle="tooltip" data-placement="bottom" title="Profile"
       span.glyphicon.glyphicon-user aria-hidden="true"
 .container-fluid
+  h2 All jots
   .row
-  - @jots.each do |jot|
-    .col-xs-6.col-sm-3
-      .well
-        .row
-          .col-md-2
-            img.thumbnail.jot src = jot.user.photo.url(:medium)
-          .col-md-8
-            span.author
-              | Posted by:
-              =<> link_to jot_author(jot), user_path(id: jot.user_id)
-            br
-            span.date
-              =< jot.updated_at.strftime('%A, %B %e, %Y')
-          .col-md-2
-            - if jot_author?(jot)
-              a.icon href=edit_jot_path(jot) data-toggle="tooltip" data-placement="bottom" title="Edit your jot"
-                span.glyphicon.glyphicon-edit aria-hidden="true"
-              a.icon href=jot_path(jot) data-method="delete" data-toggle="tooltip" data-placement="bottom" title="Delete your jot"
-                span.glyphicon.glyphicon-trash aria-hidden="true"
-        img.img-thumbnail src = jot.photo.url(:medium)
-        br
-        .content
-          = jot.content
-        .like
-          - if not jot_author?(jot)
-            - if has_not_liked?(jot)
-              = button_to 'Like', like_jot_path(jot), class: 'btn btn-success btn-xs'
-            -else
-              = button_to 'Unlike', unlike_jot_path(jot), class: 'btn btn-default btn-xs'
+    - @jots.each do |jot|
+      .col-xs-6.col-sm-3
+        .well
+          .row
+            .col-md-2
+              img.thumbnail.jot src = jot.user.photo.url(:medium)
+            .col-md-8
+              span.author
+                | Posted by:
+                =<> link_to jot_author(jot), user_path(id: jot.user_id)
+              br
+              span.date
+                =< jot.updated_at.strftime('%A, %B %e, %Y')
+            .col-md-2
+              - if jot_author?(jot)
+                a.icon href=edit_jot_path(jot) data-toggle="tooltip" data-placement="bottom" title="Edit your jot"
+                  span.glyphicon.glyphicon-edit aria-hidden="true"
+                a.icon href=jot_path(jot) data-method="delete" data-toggle="tooltip" data-placement="bottom" title="Delete your jot"
+                  span.glyphicon.glyphicon-trash aria-hidden="true"
+          img.img-thumbnail src = jot.photo.url(:medium)
           br
-          - if jot.likes.size === 0 && has_not_liked?(jot)
-            |
-          - elsif jot.likes.size === 1 && has_not_liked?(jot)
-            | Liked by 1 user
-          - elsif jot.likes.size > 1 && has_not_liked?(jot)
-            | Liked by
-            =<> jot.likes.size
-            | users
-          - elsif (jot.likes.size === 1) && (not has_not_liked?(jot))
-            | Liked by you
-          - elsif (jot.likes.size === 2) && (not has_not_liked?(jot))
-            | Liked by you and 1 other user
-          - elsif (jot.likes.size > 2) && (not has_not_liked?(jot))
-            | Liked by you and
-            =<> jot.likes.size - 1
-            | other user
+          .content
+            = jot.content
+          .like
+            - if not jot_author?(jot)
+              - if has_not_liked?(jot)
+                = button_to 'Like', like_jot_path(jot), class: 'btn btn-success btn-xs'
+              -else
+                = button_to 'Unlike', unlike_jot_path(jot), class: 'btn btn-default btn-xs'
+            br
+            - if jot.likes.size === 0 && has_not_liked?(jot)
+              |
+            - elsif jot.likes.size === 1 && has_not_liked?(jot)
+              | Liked by 1 user
+            - elsif jot.likes.size > 1 && has_not_liked?(jot)
+              | Liked by
+              =<> jot.likes.size
+              | users
+            - elsif (jot.likes.size === 1) && (not has_not_liked?(jot))
+              | Liked by you
+            - elsif (jot.likes.size === 2) && (not has_not_liked?(jot))
+              | Liked by you and 1 other user
+            - elsif (jot.likes.size > 2) && (not has_not_liked?(jot))
+              | Liked by you and
+              =<> jot.likes.size - 1
+              | other user
 / likes = 0 -> blank
 / likes = 1 -> liked by 1 person
 / likes > 1 -> liked by x people
