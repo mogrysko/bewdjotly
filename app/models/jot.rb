@@ -6,4 +6,5 @@ class Jot < ActiveRecord::Base
   medium: "300x300>" },
   default_url: "http://placehold.it/300x300"
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+  geocoded_by :address
 end

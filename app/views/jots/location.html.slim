@@ -1,0 +1,47 @@
+.container-fluid
+  .row
+    .col-md-6.col-md-offset-3
+      span.welcome
+        h2 Search for jots by a location
+        = form_tag location_path, :method => :get, :class => 'form-inline' do
+          => text_field_tag :search, params[:search], class: 'form-control input-lg'
+          =< submit_tag "Search", :name => nil, class: 'btn btn-success btn-lg'
+
+  hr
+  - if params[:search].present?
+    - if not @jots.present?
+      h2 Your search did not return any jots
+    - else
+      h2 Jots within 5 miles of #{params[:search]}
+  - else
+      h2 All jots
+  .row
+    - @jots.each do |jot|
+      .col-xs-6.col-sm-3
+        .well
+          .row
+            .col-md-2
+              img.thumbnail.jot src = jot.user.photo.url(:medium)
+            .col-md-8
+              span.author
+                | Posted by:
+                =<> link_to jot_author(jot), user_path(id: jot.user_id)
+              br
+              span.date
+                =< jot.updated_at.strftime('%A, %B %e, %Y')
+            .col-md-2
+              - if jot_author?(jot)
+                a.icon href=edit_jot_path(jot) data-toggle="tooltip" data-placement="bottom" title="Edit your jot"
+                  span.glyphicon.glyphicon-edit aria-hidden="true"
+                a.icon href=jot_path(jot) data-method="delete" data-toggle="tooltip" data-placement="bottom" title="Delete your jot"
+                  span.glyphicon.glyphicon-trash aria-hidden="true"
+          img.img-thumbnail src = jot.photo.url(:medium)
+          br
+          .content
+            = jot.content
+          .like
+            - if not jot_author?(jot)
+              - if has_not_liked?(jot)
+                = button_to 'Like', like_jot_path(jot), class: 'btn btn-success btn-xs'
+              -else
+                = button_to 'Unlike', unlike_jot_path(jot), class: 'btn btn-default btn-xs'

@@ -4,6 +4,7 @@
       $('#jot_latitude').val(position.coords.latitude);
       $('#jot_longitude').val(position.coords.longitude);
       });
+
 = form_for @jot, html: { :multipart => true } do |f|
   = f.file_field :photo, class: 'filestyle',
        :'data-classButton' => 'btn btn-primary btn-xs',

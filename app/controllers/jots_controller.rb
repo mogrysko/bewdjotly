@@ -2,6 +2,13 @@ class JotsController < ApplicationController
   def index
     @jots = Jot.all.order(updated_at: :desc)
   end
+  def location
+    if params[:search].present?
+      @jots = Jot.near(params[:search], 5)
+    else
+      @jots = Jot.all.order(updated_at: :desc)
+    end
+  end
   def new
     @jot = Jot.new
   end
