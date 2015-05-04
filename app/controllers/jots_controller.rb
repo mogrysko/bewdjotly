@@ -34,7 +34,7 @@ class JotsController < ApplicationController
   end
   private
   def jot_params
-    params.require(:jot).permit(:photo, :content).merge(user_id: session[:user_id])
+    params.require(:jot).permit(:photo, :content, :latitude, :longitude).merge(user_id: session[:user_id])
   end
   def has_not_liked?(jot)
     jot.likes.where(user_id: current_user.id).empty?

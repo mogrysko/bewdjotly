@@ -8,6 +8,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = yield :head
   body
     / - if params[:controller] == 'session' && %w(show create).include?(params[:action])
     - if content_for?(:session)

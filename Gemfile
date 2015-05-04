@@ -4,6 +4,7 @@ ruby '2.2.0'
 gem 'slim'
 gem 'quiet_assets'
 gem 'paperclip', '~> 4.2'
+gem 'geocoder'
 gem 'rails_12factor', group: :production
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
