@@ -16,7 +16,7 @@ html
       = yield :session
     - elsif content_for?(:newuser)
       = yield :newuser
-    - elsif params[:controller] == 'jots' && %w(index new edit create update).include?(params[:action]) || params[:controller] == 'users' && %w(show yourfeed).include?(params[:action])
+    - elsif params[:controller] == 'jots' && %w(index new edit create update location).include?(params[:action]) || params[:controller] == 'users' && %w(show yourfeed).include?(params[:action])
       nav.navbar.navbar-default.navbar-fixed-top
         .container-fluid
           .navbar-header
@@ -37,6 +37,11 @@ html
                 a href="/feed"
                   | Your feed
                 - if current_page?('/feed')
+                  span.sr-only (current)
+              li
+                a href="/location"
+                  | Location feed
+                - if current_page?('/location')
                   span.sr-only (current)
             ul.nav.navbar-nav.navbar-right
               - if content_for?(:newjot)

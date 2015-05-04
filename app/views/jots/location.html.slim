@@ -1,3 +1,11 @@
+- content_for :newjot do
+  li
+    a.menuicon href=new_jot_path data-toggle="tooltip" data-placement="bottom" title="New Jot"
+      span.glyphicon.glyphicon-pencil aria-hidden="true"
+- content_for :profile do
+  li
+    a.menuicon href=user_path(id: session[:user_id]) data-toggle="tooltip" data-placement="bottom" title="Profile"
+      span.glyphicon.glyphicon-user aria-hidden="true"
 .container-fluid
   .row
     .col-md-6.col-md-offset-3
