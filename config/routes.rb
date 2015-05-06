@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   get '/feed' => 'users#yourfeed'
   get '/location' => 'jots#location'
+  get '/gmaps' => 'jots#gmaps'
 end

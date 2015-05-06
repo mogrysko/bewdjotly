@@ -9,6 +9,13 @@ class JotsController < ApplicationController
       @jots = Jot.all.order(updated_at: :desc)
     end
   end
+  def gmaps
+    @jots = Jot.find(25)
+    @hash = Gmaps4rails.build_markers(@jots) do |jot, marker|
+      marker.lat jot.latitude
+      marker.lng jot.longitude
+    end
+  end
   def new
     @jot = Jot.new
   end

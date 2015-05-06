@@ -91,3 +91,10 @@ html, body, #map-canvas {
   padding: 5px;
   border: 1px solid #999;
 }
+
+#map img {
+  max-width: none;
+}
+#map label {
+  width: auto; display:inline;
+}

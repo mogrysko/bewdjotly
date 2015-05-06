@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-filestyle
+//= require underscore
+//= require gmaps/google
 //= require_tree .
